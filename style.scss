@@ -2,20 +2,31 @@
 
 html, body {
   height:100%;
-  overflow-x: hidden;
+  overflow: hidden;
   background:rgb(7, 21, 48);
+}
+
+body {
+  display:flex;
 }
 
 div {
   box-sizing: border-box;
 }
 
+@media screen and (min-width:768px) {
+  .clock {
+    max-width:500px!important;
+    height:500px!important;
+  }
+}
+
 .clock {
   overflow: hidden;
   margin:auto;
   width:100%;
-  max-width:500px;
-  height:500px;
+  max-width:250px;
+  height:250px;
   background-image: linear-gradient(0deg, #8100FF 0%, rgb(85, 178, 254) 100%);
   border-radius: 100%;
   position:relative;
@@ -25,11 +36,10 @@ div {
     position: absolute;
     text-align: center;
     right:0;left:0;bottom:0;top:0;
-    width:30px;
-    height:30px;
+    width:10%;
+    height:10%;
     background:#fff;
     border-radius:100%;
-    opacity:0.8;
   }
 
   .hour-hand, .min-hand, .sec-hand {
@@ -46,14 +56,14 @@ div {
     width:10px;
   }
   .min-hand {
-    height:250px;
+    height:50%;
   }
   .hour-hand {
-    height:150px;
-    top:100px;
+    height:25%;
+    top:25%;
   }
   .sec-hand {
-    height:300px;
+    height:60%;
     border-radius:0.4;
     width:2px;
     -webkit-transform-origin: 45% 83%;
