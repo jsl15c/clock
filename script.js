@@ -27,52 +27,54 @@ function animateColor() {
       }
       else {
         colorCounter--;
-        console.log(colorCounter);
       }
     }
     else {
       colorCounter++;
     }
-
-    // // block controls percentCounter
-    // if (percentCounter === 0) {
-    //   decreasePercent = !decreasePercent;
-    //   percentCounter++;
-    // }
-    // else if (decreasePercent === true) {
-    //
-    //   if (percentCounter === 100) {
-    //     decreasePercent = !decreasePercent;
-    //   }
-    //   else {
-    //     percentCounter++;
-    //     console.log(percentCounter);
-    //   }
-    // }
-    // else {
-    //   percentCounter--;
-    // }
-
     $('.gradient-box').css('background-image',
-    `linear-gradient(-${angleCounter}deg, #8100FF 0%, rgb(${colorCounter}, 178, 254) ${percentCounter}%)`
+    `linear-gradient(-${angleCounter}deg, #8100FF 0%, rgb(${colorCounter}, 178, 254) 100%)`
   );
 }, 10);
 }
 
 function animateClock() {
-  let seconds = 0;
-  let minutes = 0;
-  let hours = 0;
+  let time = convertTimetoDegrees();
+
   setInterval(()=> {
-    $('.sec-hand').css('transform',`rotate(${seconds}deg)`);
-    $('.min-hand').css('transform',`rotate(${minutes}deg)`);
-    $('.hour-hand').css('transform',`rotate(${hours}deg)`);
-    seconds+=6;
-    if (seconds % 360 === 0) {
-      minutes+=6;
-      if (minutes % 60 === 0) {
-        hours+=5;
+    $('.sec-hand').css('transform',`rotate(${time.sec}deg)`);
+    $('.min-hand').css('transform',`rotate(${time.min}deg)`);
+    $('.hour-hand').css('transform',`rotate(${time.hour}deg)`);
+    time.sec+=6;
+    if (time.sec % 360 === 0) {
+      time.min+=6;
+      if (time.min % 60 === 0) {
+        time.hour+=30;
       }
     }
   }, 1000);
+}
+
+function convertTimetoDegrees() {
+  var time = new Date();
+  // console.log(time.getHours()+":"+time.getMinutes()+":"+time.getSeconds());
+  let sec = time.getSeconds();
+  let min = time.getMinutes();
+  let hour = time.getHours();
+  // convert hours
+  if (hour === 24) {
+    hour = 0;
+  }
+  else if (hour > 12) {
+    hour = hour - 12;
+  }
+  else {
+    hour = hour;
+  }
+  hour = hour * 30;
+  min = min * 6;
+  sec = sec * 6;
+
+  let finalTime = {hour:hour,min:min,sec:sec};
+  return finalTime;
 }
