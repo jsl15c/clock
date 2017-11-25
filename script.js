@@ -1,8 +1,19 @@
+// Author: Jarrod Luca
+
+makeTicks();
 $(document).ready(()=> {
   animateColor();
   animateClock();
 // end ready
 });
+
+function makeTicks() {
+  for (let i = 0; i < 12; i++) {
+    $('.tick-marks').append(
+      `<div class='tick-${i}'></div>`
+    );
+  }
+}
 
 function animateColor() {
   let decreaseColor = false;
@@ -32,7 +43,7 @@ function animateColor() {
     else {
       colorCounter++;
     }
-    $('.gradient-box').css('background-image',
+    $('.clock').css('background-image',
     `linear-gradient(-${angleCounter}deg, #8100FF 0%, rgb(${colorCounter}, 178, 254) 100%)`
   );
 }, 10);
