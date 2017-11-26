@@ -13,6 +13,20 @@ function makeTicks() {
       `<div class='tick-${i}'></div>`
     );
   }
+  for (let i = 0; i < 4; i++) {
+    let scaled = 0.8 - i*2/10;
+    $('.clock').append(
+      `<div class="clock new"
+            style="transform:scale(${scaled})
+        ">
+        <div class="center-dial"></div>
+        <div class="hour-hand"></div>
+        <div class="min-hand"></div>
+        <div class="sec-hand"></div>
+        <div class="tick-marks"></div>
+      </div>`
+    );
+  }
 }
 
 function animateColor() {
